@@ -10,6 +10,7 @@ o programa de teste por um programa mais completo.
 """
 
 from cpu import CPU
+from programas import carregar_programa_exemplo, carregar_programa_proprio
 
 
 cpu = CPU()
@@ -27,33 +28,31 @@ cpu = CPU()
 # R0 = 5
 # R1 = 8
 #
-'''
-cpu.memoria[0] = "LOAD R0, 5"
-cpu.memoria[1] = "JMP 4"
-cpu.memoria[2] = "LOAD R0, 99"
-cpu.memoria[3] = "HALT"
 
-cpu.memoria[4] = "LOAD R1, 8"
-cpu.memoria[5] = "HALT"
-
-'''
-
-cpu.memoria[0] = "LOAD R0, 5"
-cpu.memoria[1] = "LOAD R1, 8"
-cpu.memoria[2] = "ADD R0, R1"
-cpu.memoria[3] = "STORE R0, 15"
-cpu.memoria[4] = "HALT"
 
 print("======================================")
 print("       CPU SIMULADA — 8 BITS")
 print("======================================")
 
-cpu.executar()
+# 1. Executando o Programa de Exemplo (5 + 8)
+print("\n>>> EXECUÇÃO 1: PROGRAMA DE EXEMPLO (5 + 8) <<<")
+cpu_exemplo = CPU()
+carregar_programa_exemplo(cpu_exemplo)
+cpu_exemplo.executar()
 
-print()
-print("======================================")
-print("RESULTADO FINAL")
-print("======================================")
+print("\n--- RESULTADO FINAL (EXEMPLO) ---")
+cpu_exemplo.mostrar_estado()
+print(f"Memória[15]: {cpu_exemplo.memoria[15]}")
 
-cpu.mostrar_estado()
-print(f"Memória[15]: {cpu.memoria[15]}")
+# 2. Executando o Programa Próprio (ADD + OR)
+print("\n======================================")
+print(">>> EXECUÇÃO 2: PROGRAMA PRÓPRIO (ADD + OR) <<<")
+cpu_propria = CPU()
+carregar_programa_proprio(cpu_propria)
+cpu_propria.executar()
+
+
+print("\n--- RESULTADO FINAL (PROGRAMA PRÓPRIO) ---")
+cpu_propria.mostrar_estado()
+print(f"Resultado do ADD (12 + 3): Memória[9] = {cpu_propria.memoria[9]}")
+print(f"Resultado do OR (15 OR 16): Memória[10] = {cpu_propria.memoria[10]}")
