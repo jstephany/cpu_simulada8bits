@@ -2,7 +2,7 @@
 **Disciplina:** Arquitetura de Computadores (AOC 2026.2)
 **Professor:** Wendley S. Silva
 **Instituição:** Universidade Federal do Ceará (UFC) - Campus Sobral
-**Aluno(s):** João Pedro Sousa Marques, 
+**Aluno(s):** João Pedro Sousa Marques, Julia Stephany Ferreira Coelho Silva
 ---
 
 ## 1. Arquitetura da CPU
