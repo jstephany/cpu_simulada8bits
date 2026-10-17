@@ -71,10 +71,11 @@ class CPU:
             registrador = partes[1]
             endereco = int(partes[2])
             
-            # Pega o valor do registrador e salva na memória
+            # Recupera o valor armazenado no registrador especificado
+            # e o salva na posição correspondente da memória principal
             self.memoria[endereco] = self.registradores[registrador]
             
-            # Avança o PC
+            # Incrementa o Program Counter para a próxima instrução
             self.pc += 1
             
 
@@ -95,9 +96,10 @@ class CPU:
             # Realiza a soma através da ULA (já retorna em 8 bits)
             resultado = ula("ADD", valor_a, valor_b)
             
-            # Guarda o resultado de volta no primeiro registrador
+            # Guarda o resultado de volta no primeiro registrador (destino)
             self.registradores[reg_destino] = resultado
-            
+
+            # Avança o contador de programa para a próxima instrução
             self.pc += 1
 
 
@@ -108,13 +110,18 @@ class CPU:
         elif operacao == "SUB":
             reg_destino = partes[1]
             reg_origem = partes[2]
-            
+
+            # Pega os valores atuais dos dois registradores
             valor_a = self.registradores[reg_destino]
             valor_b = self.registradores[reg_origem]
-            
+
+            # Realiza a subtração através da ULA (já retorna em 8 bits)
             resultado = ula("SUB", valor_a, valor_b)
+
+            # Guarda o resultado de volta no primeiro registrador (destino)
             self.registradores[reg_destino] = resultado
-            
+
+            # Avança o contador de programa para a próxima instrução
             self.pc += 1
 
 
@@ -125,13 +132,18 @@ class CPU:
         elif operacao == "AND":
             reg_destino = partes[1]
             reg_origem = partes[2]
-            
+
+            # Pega os valores atuais dos dois registradores
             valor_a = self.registradores[reg_destino]
             valor_b = self.registradores[reg_origem]
-            
+
+            # Realiza a operação lógica AND através da ULA (já retorna em 8 bits)
             resultado = ula("AND", valor_a, valor_b)
+
+            # Guarda o resultado de volta no primeiro registrador (destino)
             self.registradores[reg_destino] = resultado
-            
+
+            # Avança o contador de programa para a próxima instrução
             self.pc += 1
 
 
@@ -142,13 +154,18 @@ class CPU:
         elif operacao == "OR":
             reg_destino = partes[1]
             reg_origem = partes[2]
-            
+
+            # Pega os valores atuais dos dois registradores
             valor_a = self.registradores[reg_destino]
             valor_b = self.registradores[reg_origem]
-            
+
+            # Realiza a operação lógica OR através da ULA (já retorna em 8 bits)
             resultado = ula("OR", valor_a, valor_b)
+
+            # Guarda o resultado de volta no primeiro registrador (destino)
             self.registradores[reg_destino] = resultado
-            
+
+            # Avança o contador de programa para a próxima instrução
             self.pc += 1
 
 
@@ -159,13 +176,18 @@ class CPU:
         elif operacao == "XOR":
             reg_destino = partes[1]
             reg_origem = partes[2]
-            
+
+            # Pega os valores atuais dos dois registradores
             valor_a = self.registradores[reg_destino]
             valor_b = self.registradores[reg_origem]
-            
+
+            # Realiza a operação lógica XOR através da ULA (já retorna em 8 bits)
             resultado = ula("XOR", valor_a, valor_b)
+
+            # Guarda o resultado de volta no primeiro registrador (destino)
             self.registradores[reg_destino] = resultado
-            
+
+            # Avança o contador de programa para a próxima instrução
             self.pc += 1
 
             

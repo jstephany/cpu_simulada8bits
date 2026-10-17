@@ -14,23 +14,23 @@ def ula(operacao, a, b=0):
     b = limitar_8bits(b)
 
     if operacao == "ADD":
-        # IMPLEMENTAR
+        # Realiza a soma aritmética tradicional
         resultado = a + b
 
     elif operacao == "SUB":
-        # IMPLEMENTAR
+        # Realiza a subtração aritmética
         resultado = a - b
 
     elif operacao == "AND":
-        # IMPLEMENTAR
+        # Realiza a operação lógica E (AND) bit a bit
         resultado = a & b
 
-    elif operacao == "OR":
-        # IMPLEMENTAR
+    elif operacao == "OR":        
+        # Realiza a operação lógica OU (OR) bit a bit
         resultado = a | b
 
     elif operacao == "XOR":
-        # IMPLEMENTAR
+        # Realiza a operação lógica OU EXCLUSIVO (XOR) bit a bit
         resultado = a ^ b
 
     else:

@@ -21,17 +21,34 @@ def carregar_programa_exemplo(cpu):
 
 def carregar_programa_proprio(cpu):
     """
-    Programa próprio com 8 instruções.
+    Programa próprio com 8 instruções criado para avaliação.
     
-    Demonstração:
-    - Preserva o resultado do ADD (12 + 3 = 15) na Memória[9]
-    - Preserva o resultado do OR (15 OR 16 = 31) na Memória[10]
+    Demonstração passo a passo:
+    - Etapa 1: Soma de dois valores (12 + 3) e armazenamento na memória.
+    - Etapa 2: Operação lógica OR e armazenamento de um segundo resultado.
     """
+
+    # 1. Carrega o valor decimal 12 no registrador R0
     cpu.memoria[0] = "LOAD R0, 12"
+
+    # 2. Carrega o valor decimal 3 no registrador R1
     cpu.memoria[1] = "LOAD R1, 3"
-    cpu.memoria[2] = "ADD R0, R1"       # R0 vira 15 (12 + 3)
-    cpu.memoria[3] = "STORE R0, 9"      # Salva o resultado do ADD (15) na Memória[9]
+
+    # 3. Realiza a soma de R0 e R1 (12 + 3 = 15). O resultado (15) fica salvo em R0.
+    cpu.memoria[2] = "ADD R0, R1"
+
+    # 4. Pega o valor atual de R0 (15) e salva na posição 9 da memória principal.
+    cpu.memoria[3] = "STORE R0, 9"
+
+    # 5. Carrega o valor decimal 16 no registrador R2
     cpu.memoria[4] = "LOAD R2, 16"
-    cpu.memoria[5] = "OR R0, R2"        # R0 vira 31 (15 OR 16)
-    cpu.memoria[6] = "STORE R0, 10"     # Salva o resultado do OR (31) na Memória[10]
+
+    # 6. Realiza a operação bit a bit OR entre R0 (15) e R2 (16).
+    # Em binário: 15 (00001111) OR 16 (00010000) = 31 (00011111). Salva 31 em R0.
+    cpu.memoria[5] = "OR R0, R2"
+
+    # 7. Pega o novo valor de R0 (31) e salva na posição 10 da memória principal.        
+    cpu.memoria[6] = "STORE R0, 10"     
+
+    # 8. Encerra o ciclo de execução da CPU.
     cpu.memoria[7] = "HALT"

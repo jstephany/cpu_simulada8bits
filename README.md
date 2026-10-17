@@ -1,98 +1,54 @@
-# CPU Simulada — Código-base
-## AOC 2026.2
+# Projeto: CPU Simulada de 8 bits
+**Disciplina:** Arquitetura de Computadores (AOC 2026.2)
+**Professor:** Wendley S. Silva
+**Instituição:** Universidade Federal do Ceará (UFC) - Campus Sobral
+**Aluno(s):** João Pedro Sousa Marques, 
+---
 
-### 1. Objetivo
+## 1. Arquitetura da CPU
 
-Este pacote contém o código-base para o projeto de CPU Simulada.
+Este projeto implementa uma CPU simulada e didática com as seguintes características operacionais:
 
-A CPU possui:
+*   **Tamanho dos Dados:** 8 bits (valores limitados através de máscaras binárias `& 0xFF`).
+*   **Registradores Gerais:** 4 registradores (R0, R1, R2 e R3).
+*   **Contador de Programa:** 1 registrador PC (Program Counter) que rastreia a próxima instrução.
+*   **Memória:** 16 posições de memória, identificadas de 0 a 15.
+*   **Unidade Lógica e Aritmética (ULA):** Suporta operações de soma (ADD), subtração (SUB), e operações lógicas (AND, OR, XOR).
+*   **Ciclo de Execução:** Baseado no ciclo clássico de *Fetch* (Busca), *Decode* (Decodificação) e *Execute* (Execução).
 
-- dados de 8 bits;
-- quatro registradores: R0, R1, R2 e R3;
-- memória com 16 posições;
-- PC (Program Counter);
-- ULA;
-- ciclo Fetch → Decode → Execute.
+## 2. Conjunto de Instruções Implementado
 
-### 2. Arquivos
+*   `LOAD [REG], [VALOR]`: Carrega um valor inteiro no registrador especificado.
+*   `STORE [REG], [ENDEREÇO]`: Salva o valor atual do registrador na posição de memória especificada.
+*   `ADD [REG_DESTINO], [REG_ORIGEM]`: Soma os valores dos dois registradores e salva no destino.
+*   `SUB [REG_DESTINO], [REG_ORIGEM]`: Subtrai o valor do reg. origem do reg. destino e salva no destino.
+*   `AND`, `OR`, `XOR [REG_DESTINO], [REG_ORIGEM]`: Realiza a operação lógica bit a bit e salva no destino.
+*   `JMP [ENDEREÇO]`: Altera o PC para o endereço especificado (salto incondicional).
+*   `HALT`: Encerra a execução da CPU.
 
-- `ula.py` — ULA e operações aritméticas/lógicas.
-- `cpu.py` — estrutura principal da CPU.
-- `main.py` — programa de demonstração.
-- `testes.py` — testes das partes já implementadas.
+## 3. Programa Próprio Implementado
 
-### 3. O que já está implementado
+Para demonstrar o funcionamento completo da arquitetura, foi desenvolvido um programa próprio de 8 instruções que realiza operações matemáticas e lógicas e salva os resultados na memória.
 
-No código-base, estão implementados:
+**Lógica do Programa:**
+1. Carrega o valor 12 em R0 e 3 em R1.
+2. Realiza a soma (ADD R0, R1), resultando em 15 no R0.
+3. Salva esse resultado (15) na Memória[9].
+4. Carrega o valor 16 em R2.
+5. Realiza a operação lógica OR (OR R0, R2) entre 15 e 16, resultando em 31.
+6. Salva esse novo resultado (31) na Memória[10].
+7. Encerra a execução (HALT).
 
-- registradores;
-- memória;
-- PC;
-- limitação para 8 bits;
-- `LOAD`;
-- `JMP`;
-- `HALT`;
-- estrutura do ciclo Fetch → Decode → Execute.
+## 4. Como Executar o Projeto
 
-### 4. O que deve ser implementado pela dupla
+Certifique-se de ter o Python instalado em sua máquina. Navegue até a pasta do projeto via terminal e execute os seguintes comandos:
 
-Os alunos deverão completar:
-
-- `STORE`;
-- `ADD`;
-- `SUB`;
-- `AND`;
-- `OR`;
-- `XOR`;
-- operações da ULA em `ula.py`;
-- testes adicionais.
-
-### 5. Como executar
-
-No terminal, dentro da pasta:
-
+**Para rodar a simulação (Programa de Exemplo + Programa Próprio):**
 ```bash
 python main.py
 ```
 
-Para executar os testes:
-
+**Para rodar a suíte de testes automatizados:**
 ```bash
 python testes.py
 ```
-
-### 6. Exemplo
-
-O `main.py` contém:
-
-```text
-0: LOAD R0, 5
-1: JMP 4
-2: LOAD R0, 99
-3: HALT
-4: LOAD R1, 8
-5: HALT
-```
-
-A instrução `JMP 4` faz a CPU saltar da posição 1 para a posição 4.
-
-Portanto:
-
-```text
-R0 = 5
-R1 = 8
-```
-
-A instrução `LOAD R0, 99` não será executada.
-
-### 7. Regras
-
-Não alterar:
-
-- os nomes dos arquivos;
-- a assinatura da função `ula()`;
-- a estrutura dos registradores;
-- o tamanho da memória;
-- a representação de 8 bits.
-
-O grupo pode acrescentar funções auxiliares e melhorar a visualização, desde que preserve a interface definida pelo professor.
